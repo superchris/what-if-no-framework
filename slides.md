@@ -1,270 +1,58 @@
-## GraphQL
-* A query language for your API
-* Persistence agnostic
-* Implementations in many languages
+### To all the Web frameworks I've loved before
+* Backbone
+* Angular
+* React (kinda)
 --
-## Why?
-### REST is fine..
-#### Until it's not.
+## Good ideas from web frameworks
+* Reusable components
+* Actions up, data down
+  * AKA Dumb Components
+  * AKA One way binding
+  * AKA ...
 --
-Let's display some customers.
-## GET /customers
-```javascript
-[
-  {
-    id: 1
-    name: "Bill"
-    address: "123 happy trail"
-  }
-  {
-    id: 2
-    name: "Joe"
-    address: "123 happy trail"
-  }  
-]
-```
+## State of webcomponents
+* Custom Elements v1
+* Shadow DOM v1
+* HTML templates
+* Custom events
+* webcomponentsj polyfill
 --
-And of their pet's names
-### GET /customers/1/pets
-```javascript
-[
-  {
-    name: "Fido",
-    species: "Doge",
-    owner_id: 1
-  },
-  {
-    name: "Fluffy",
-    species: "Iguana",
-    owner_id: 2
-  }
-]
-```
+## Custom elements v1
+* ES6 classes that extend `HTMLElement`
+* `customElements.define('my-tag', MyTagElement)`
+* lifecyle methods
+  * constructor
+  * `attributeChanged`
+  * `connectedCallback`
 --
-### GET /customers/1/pets
-### GET /customers/2/pets
-### ...
-## OR
-### GET /customers?includePets=true
+## Shadow DOM v1
+* `element.attachShadow({mode: 'open'})`
+* Total encapsulated DOM within a DOM
+* CSS from outer page doesn't apply
+* CSS in Shadow DOM doesn't bleed out
 --
-![kramer](kramer-whichdata.jpg)
+## Shadow DOM Slots
+* Define placeholders in your shadow DOM
+* `<slot name="foo"></slot>` with shadow DOM
+* `<span slot="foo">what goes in foo slot</span` in custom element children
 --
-## Your first GraphQL query
-``` javascript
-query {
-  customers {
-    id
-    name
-    address
-  }
-}
-```
+## Custom events
+* Not really part of Webcomponents
+* Just what the name implies
+* "payload" goes in `detail`
 --
-## Response
-```
-{
-  "data": {
-    "customers": [
-      {
-        "name": "Bill",
-        "id": "1",
-        "address": "123 happy trail"
-      },
-      {
-        "name": "Test customer",
-        "id": "2",
-        "address": "777 street avenue"
-      }
-    ]
-  }
-}
-```
+## The experiment
+* Build app out of webcomponents with only browser provided API
+* Use "off the shelf" from other frameworks
+* Figure out how to wire things together
 --
-## Let's try it in GraphQL
+### github.com/superchris/aviation-webcomponents
 --
-### A schema is a Graph of Types
+#### Current web frameworks : Web components
+#### ::
+#### Coffeescript : ESNext
 --
-## Scalar types
-* Int
-* Float
-* String
-* Boolean
-* ID
-* _Your custom type_
---
-## Object types
-### can have fields
-```javascript
-type Customer {
-  address: String
-  id: ID
-  name: String
-  pets: Pet
-}
-```
---
-## Root types
-### query
-A type whose fields are queries
-### mutation
-A type whose fields are mutations
---
-## Lists and Required Fields
-```javascript
-type Example {
-  listOfStuff: [Stuff]
-  requiredString: String!
-}
-```
---
-## Arguments
-```javascript
-type QueryType {
-  customers: [Customer]
-  customer(id: ID!): Customer
-}
-```
---
-## Argument Example
-```
-query {
-  customer(id: 3) {
-    name
-    address
-  }
-}
-```
-### Result
-```
-{
-  "data": {
-    "customer": {
-      "name": "Test 2",
-      "address": "345 Trail Street"
-    }
-  }
-}
-```
---
-## Variables
-```
-query myCustomer($customerId:ID!) {
-  customer(id: $customerId) {
-    name
-  }
-}
-```
-Let's try it in GraphiQL
---
-## Enums
---
-## Interfaces
---
-## Unions
---
-## Fragments
---
-## Mutations
-```javascript
-mutation {
-  createCustomer(name: "Test 2", address: "345 Trail Street") {
-    id
-    name
-  }
-}
-```
-Result:
-```
-{
-  "data": {
-    "createCustomer": {
-      "name": "Test 2",
-      "id": "3"
-    }
-  }
-}
-```
---
-## Input Types
-```
-input CustomerInput {
-  name: string!
-  address: String
-}
-```
---
-## Using input types in a mutation
---
-## Defining a schema
-Is entirely Implementation specific
---
-## There is one for your favorite language already...
-* GraphQL.js
-* Absinthe (Elixir)
-* graphql-java
-* sangria (Scala)
-* graphql-ruby
-* Way more... [awesome-graphql](https://github.com/chentsulin/awesome-graphql)
---
-## Absinte example
---
-## Introspection
-A graphql query that returns information about the schema
---
-## Built-in queries
-* `__schema`
-* `__type`
---
-Let's try it
---
-## GraphQL request
-### POST /GraphQL
-Content-type: "application/json"
-```javascript
-{
-  query: "foo { bar, baz }",
-  operationName: "query",
-  variables: {
-
-  }
-}
-```
---
-## GraphQL response
-```javascript
-{
-  data: {
-    foo: {
-      bar: "...",
-      baz: "..."
-    }
-  }
-  errors: []
-}
-```
---
-## GraphQL clients
---
-## Relay
-* Created by Facebook
-* Lets components declare their data needs (via fragments)
-* Introduces some constraints on your schema
-* Replaces redux
---
-## Apollo
-* Created by Meteor
-* Integrates with React, Angular2, etc
-* Easy to introduce, no schema changes required
-* Can "watch" queries
---
-## Apollo demo app
---
-## Your schema and you
-Fun things you can do with your GraphQL schema
---
-## GraphiQL
---
-## Validation
---
-## graphql-admin
---
+## Stuff to check out
+* Webcomponents.org
+* Polymer
+* SkateJS
