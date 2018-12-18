@@ -12,10 +12,9 @@
 --
 ### Good ideas from web frameworks
 * Reusable components
-* Actions up, data down
-  * AKA Dumb Components
-  * AKA One way data flow
-  * AKA ...
+* Managing State
+  * One-way data flow
+  * "data down, actions up"
 --
 ## But do we really need another (incompatible) one?
 --
@@ -121,6 +120,8 @@ export default HelloShadow;
 --
 ## [Hello shadow](http://localhost:8081/hello-shadow.html)
 --
+## Surprise! Your browser is [doing it already.](http://localhost:8081/progress-example.html)
+--
 ## Composition and slots
 * Uses a shadow DOM as a template
 * Smerges Light DOM and Shadow DOM
@@ -177,7 +178,7 @@ export default HelloSlots;
 --
 ## [Checklist example](http://localhost:8083)
 --
-## Data flow
+## One-way Data flow
 ![flux](flux.png)
 --
 ## Could we do this without a framework?
@@ -187,20 +188,19 @@ export default HelloSlots;
 * Just what the name implies
 * "payload" goes in `detail`
 --
-## My data flow experiment
-* Build app using only browser provided API
-  * Bonus points for no build tool
-* Use "off the shelf" web components
-* Figure out how to wire things together in a sensible way
+## 3 simple rules for managing state
+* Data comes in via attributes (or properties)
+* Components re-render when new data comes in
+* Components emit custom events when something happens
 --
-## [FlightPlanner](http://localhost:8082)
+## `wc-fluxish`
+* Reducers
+  * `(current_state, action) => newState`
+* Subscribers
+  * `(newState) => { updateComponent() }`
+* `connect(reducers, subscribers)`
 --
-## Testing web components
-* Test frameworks often coupled to web frameworks
-* Fake DOMs are fake
-* Puppeteer isn't :)
---
-## Test example
+## [Bus Detective (NG)](http://localhost:4000)
 --
 ## Things worth checking out
 * [Webcomponents.org](http://webcomponents.org)
